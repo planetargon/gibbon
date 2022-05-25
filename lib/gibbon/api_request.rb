@@ -155,11 +155,11 @@ module Gibbon
 
         if Faraday::VERSION.to_i >= 2
           faraday.request :authorization, :basic, 'apikey', self.api_key
-        else
+        elsif Faraday::VERSION.to_i == 1
           faraday.request :basic_auth, 'apikey', self.api_key
         end
       end
-
+      client.basic_auth('apikey', self.api_key)
       client
     end
 
